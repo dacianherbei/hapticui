@@ -1,0 +1,33 @@
+[package]
+name = "haptic-gui"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = []
+fast_math = ["fast_inv_sqrt"]  # Enable fast mathematical approximations
+simd = []                      # Future SIMD optimizations
+
+[dependencies]
+# Core dependencies here
+
+[dev-dependencies]
+criterion = "0.7.0"
+approx = "0.5"
+
+[[bench]]
+name = "vec3_benchmark"
+harness = false
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[profile.bench]
+opt-level = 3
+lto = true
+codegen-units = 1
+debug = true
+
